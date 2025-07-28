@@ -1,0 +1,75 @@
+第0关
+HTML页面，上有解密svg
+打开svg，发现注释里有第1关链接
+
+第1关
+打开发现是新手引导，无有效信息
+进入作品编辑页，第5屏提示前4屏无有效信息
+两个文本控件名被base64了
+解码后：
+https://shequ.codemao.cn/user/
+work_author_uid
+发现头像为二维码，扫描后得到用户ID 6373868
+进入https://shequ.codemao.cn/user/6373868
+（旧：发现半串链接kzbwh0/coco_guide/itn91lrubhsidlb9，拼接https://codemao.yuque.com/）
+
+第1.5关
+【感谢fish赞助】
+注意到用户正在做：the key is hex(第5关提示)
+注意到用户正在做（第7关）
+the last key is base32(hex.slice(0,16))
+30s sha1 len=6
+remove unused chars if neccessary
+发现用户有作品，进入作品
+遇到乱码，文本caesar，10为偏移量
+解密后接到点猫语雀
+
+第2关
+访问后发现一个图片文件，解压后得到文件R2l0.txt（base64后为Git）
+内含文件链接，但无法打开（401）
+回到第0关，发现存在Authorization-Header: Bearer 73656E645F656D61696C的响应头
+附带请求头Authorization: Bearer 73656E645F656D61696C访问，成功下载一个APK文件
+
+第3关
+运行APK文件，发现平平无奇
+解压，转存bcmc文件并访问，发现图片从网络加载https://cdn.cocotais.cn/coconut-lab.png
+查看响应头，发现存在Decrypt-Project-Name: waddle的响应头
+屏幕2提示仔细研究APK，发现签名文件暗藏玄机
+commit-hash
+d547ea2779c0fb1d5f5639372421aa5d86572472
+branch dev
+try_it@waddle.cocotais.cn
+another_file_cdn_cocotais_cn_6F34746840636F636
+
+第4关
+直接克隆waddle仓库并签出，发现是AI写控件static\Waddle\eastegg\co-language.html
+打开新版waddle访问同样地址
+F12，发现一开始就有注释：part2=5F746F5F636F63
+访问https://cdn.cocotais.cn/6F34746840636F636，发现是一个文本文件，里面一堆c和o
+扔到Co语言编译器，得到一个网页链接https://lyx.onl/
+访问，发现证书不匹配，签发地为F746169732E636E.cocotais.cn
+继续访问原网页，得到“base16 every suspicious code up”
+连接，得到73656E645F656D61696C5F746F5F636F636F34746840636F636F746169732E636E
+解码得到send_email_to_coco4th@cocotais.cn
+
+第5关
+尝试发件，发现回复错误
+访问F746169732E636E.cocotais.cn，得到base64字符串
+解码，16进制字符串
+再解码，得到邮件主题
+
+第6关
+Co语言编译器发现注释：rpid=268710252689;time=1753354055
+体验AI写控件后被诈骗，进入视频评论区
+发现相关评论，内有content
+发送，无效，发现是编码后
+给了tip，搜索发现是puny的释义
+联想到punycode，尝试解码
+得到祝coco编辑器四周年快乐!
+发送，得到验证URL
+
+第7关
+【感谢海藻酸钠赞助】
+扫描第1.5关作品封面二维码，得到提示OTP
+根据提示容易得知密钥MU2TQZJYHFSTKYLFMIZWKZTCMM======
+生成6位数验证码填入，得到群号
